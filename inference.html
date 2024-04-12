@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .popup {
+            position: relative;
+            width: 800px;
+            height: fit-content;
+            background: #FFFFFF;
+            /* box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1); */
+            border-radius: 13px;
+            border: 5px;
+            border-color: #4480FF;
+            border-style: solid;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #ECF1FD;
+            /* box-shadow: 0px 0.5px 0.5px #EFEFEF, 0px 1px 0.5px rgba(239, 239, 239, 0.5); */
+            border-radius: 5px;
+        }
+
+        .note {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .title {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 17px;
+            line-height: 24px;
+            color: #2B2B2F;
+        }
+
+        .subtitle {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 18px;
+            color: #5F5D6B;
+        }
+
+        .input_field {
+            width: 100%;
+            height: 42px;
+            padding: 0 0 0 12px;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid #e5e5e5;
+            /* filter: drop-shadow(0px 1px 0px #efefef)
+                drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5)); */
+            transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+        }
+
+        .input_field:focus {
+            border: 1px solid transparent;
+            /* box-shadow: 0px 0px 0px 1px #2B2B2F; */
+            background-color: transparent;
+        }
+
+        .form button.submit {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 18px;
+            gap: 10px;
+            width: 100%;
+            height: 42px;
+            background: linear-gradient(180deg, #4480FF 0%, #115DFC 50%, #0550ED 100%);
+            /* box-shadow: 0px 0.5px 0.5px #EFEFEF, 0px 1px 0.5px rgba(239, 239, 239, 0.5); */
+            border-radius: 5px;
+            border: 0;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 15px;
+            color: #ffffff;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
+        }
+
+        table th,
+        table td {
+            padding: 12px 15px;
+        }
+
+        table tbody tr {
+            border-bottom: 1px solid #115DFC;
+        }
+
+        table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+
+        nav {
+            background-color: #4480FF;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        nav a {
+            color: white;
+            padding: 12px 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #115DFC;
+            border-radius: 5px;
+        }
+
+        .inputs {
+            display: flex;
+            flex-wrap: wrap; 
+            /* gap: 2px;  */
+            justify-content: start;
+            align-items: center;
+        }
+
+        .inputs input {
+            width: 125px;
+        }
+    
+    </style>
+</head>
+<body>
+    <center>
+    <nav>
+        <a href="/bot/index.html">Query</a>
+        <a href="/bot/inference.html">Inference</a>
+    </nav>
+    <div class="popup">
+        <form class="form" id="playerForm">
+          <div class="note">
+            <label class="title">Search For Similar Players</label>
+            <span class="subtitle">Use this tool to identify similar soccer players from the striker positions</span>
+          </div>
+          <div class="inputs">
+            <input type="number" name="age" placeholder="Age" class="input_field">
+            <input type="text" name="club_position" placeholder="Club Position" class="input_field">
+            <input type="number" name="preferred_foot" placeholder="Preferred Foot" class="input_field">
+            <input type="number" name="weak_foot" placeholder="Weak Foot Rating" class="input_field">
+            <input type="number" name="skill_moves" placeholder="Skill Moves Rating" class="input_field">
+            <input type="number" name="international_reputation" placeholder="International Reputation" class="input_field">
+            <input type="number" name="pace" placeholder="Pace" class="input_field">
+            <input type="number" name="shooting" placeholder="Shooting" class="input_field">
+            <input type="number" name="passing" placeholder="Passing" class="input_field">
+            <input type="number" name="dribbling" placeholder="Dribbling" class="input_field">
+            <input type="number" name="defending" placeholder="Defending" class="input_field">
+            <input type="number" name="physic" placeholder="Physic" class="input_field">
+            <input type="number" name="attacking_crossing" placeholder="Attacking Crossing" class="input_field">
+            <input type="number" name="attacking_finishing" placeholder="Attacking Finishing" class="input_field">
+            <input type="number" name="attacking_heading_accuracy" placeholder="Attacking Heading Accuracy" class="input_field">
+            <input type="number" name="attacking_short_passing" placeholder="Attacking Short Passing" class="input_field">
+            <input type="number" name="attacking_volleys" placeholder="Attacking Volleys" class="input_field">
+            <input type="number" name="skill_dribbling" placeholder="Skill Dribbling" class="input_field">
+            <input type="number" name="skill_curve" placeholder="Skill Curve" class="input_field">
+            <input type="number" name="skill_fk_accuracy" placeholder="Skill Free Kick Accuracy" class="input_field">
+            <input type="number" name="skill_long_passing" placeholder="Skill Long Passing" class="input_field">
+            <input type="number" name="skill_ball_control" placeholder="Skill Ball Control" class="input_field">
+            <input type="number" name="movement_acceleration" placeholder="Movement Acceleration" class="input_field">
+            <input type="number" name="movement_sprint_speed" placeholder="Movement Sprint Speed" class="input_field">
+            <input type="number" name="movement_agility" placeholder="Movement Agility" class="input_field">
+            <input type="number" name="movement_reactions" placeholder="Movement Reactions" class="input_field">
+            <input type="number" name="movement_balance" placeholder="Movement Balance" class="input_field">
+            <input type="number" name="power_shot_power" placeholder="Power Shot Power" class="input_field">
+            <input type="number" name="power_jumping" placeholder="Power Jumping" class="input_field">
+            <input type="number" name="power_stamina" placeholder="Power Stamina" class="input_field">
+            <input type="number" name="power_strength" placeholder="Power Strength" class="input_field">
+            <input type="number" name="power_long_shots" placeholder="Power Long Shots" class="input_field">
+            <input type="number" name="mentality_aggression" placeholder="Mentality Aggression" class="input_field">
+            <input type="number" name="mentality_interceptions" placeholder="Mentality Interceptions" class="input_field">
+            <input type="number" name="mentality_positioning" placeholder="Mentality Positioning" class="input_field">
+            <input type="number" name="mentality_vision" placeholder="Mentality Vision" class="input_field">
+            <input type="number" name="mentality_penalties" placeholder="Mentality Penalties" class="input_field">
+            <input type="number" name="mentality_composure" placeholder="Mentality Composure" class="input_field">
+            <input type="number" name="ST" placeholder="ST" class="input_field">
+            <input type="number" name="LS" placeholder="LS" class="input_field">
+            <input type="number" name="RS" placeholder="RS" class="input_field">
+            <input type="number" name="LW" placeholder="LW" class="input_field">
+            <input type="number" name="LF" placeholder="LF" class="input_field">
+            <input type="number" name="CF" placeholder="CF" class="input_field">
+            <input type="number" name="RF" placeholder="RF" class="input_field">
+            <input type="number" name="RW" placeholder="RW" class="input_field">
+            <!-- ST	LS	RS	LW	LF	CF	RF	RW -->
+        </div>
+          <button class="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="table-container" id="resultTable"></div>
+
+    </center>
+    <script>
+        document.getElementById('playerForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+    
+            const formData = new FormData(this);
+            const payload = {};
+            formData.forEach(function(value, key) {
+                payload[key] = isNaN(value) ? value : Number(value); 
+            });
+    
+            fetch('http://100.25.152.178:5000/inference', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayTable(data.body);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    
+        function displayTable(data) {
+            let tableHtml = '<table>';
+            tableHtml += '<tr><th>Name</th><th>Position</th><th>Rating</th><th>Price</th><th>Age</th><th>Speed</th><th>Shooting</th><th>Passing</th><th>Dribbling</th><th>Defending</th></tr>';
+            data.forEach(item => {
+                tableHtml += `<tr>
+                    <td>${item[0]}</td>
+                    <td>${item[1]}</td>
+                    <td>${item[2]}</td>
+                    <td>${item[3]}</td>
+                    <td>${item[4]}</td>
+                    <td>${item[5]}</td>
+                    <td>${item[6]}</td>
+                    <td>${item[7]}</td>
+                    <td>${item[8]}</td>
+                    <td>${item[9]}</td>
+                </tr>`;
+            });
+            tableHtml += '</table>';
+            document.getElementById('resultTable').innerHTML = tableHtml;
+        }
+    </script>
+    
+
+</body>
+</html>
